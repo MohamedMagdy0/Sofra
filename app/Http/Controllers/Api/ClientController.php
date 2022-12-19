@@ -350,11 +350,13 @@ class ClientController extends Controller
             $title = 'لديك طلب جديد' ;
             // dd($title) ;
             $body = 'لديك طلب جديد من العميل'.$request->user()->name ;
+
             $tokens =  $restaurant->tokens()->where('token','!=','')->pluck('token')->toArray();
+            dd($tokens);
+
             $data = [ 'order' => $order->fresh()->load('items') ] ;
 
             $send = $this->notifyByFirebase($title,$body,$tokens,$data) ;
-
             return $this->responseJson(200,'تم الطلب بنجاح ',$data) ;
 
         }else{
