@@ -193,7 +193,7 @@ class RestaurantController extends Controller
          if ($validator->fails()) {
              return $this->responseJson(422, $validator->errors()->first(), $validator->errors()) ;
          }
- 
+
          // delete old token
          Token::where('token', $request->token)->delete();
 
